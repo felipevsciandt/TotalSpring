@@ -22,6 +22,9 @@ public class PedidoService {
     @Autowired
     private ModelMapper modelMapper;
 
+    public List<Pedido> findAll() {
+        return pedidoRepository.findAll();
+    }
     @Transactional
     public PedidoDto findById(Long id) {
         Optional<Pedido> object = pedidoRepository.findById(id);
@@ -36,7 +39,4 @@ public class PedidoService {
         return this.pedidoRepository.save(modelMapper.map(pedidoDto, Pedido.class));
     }
 
-    public List<Pedido> findAll() {
-        return pedidoRepository.findAll();
-    }
 }

@@ -1,5 +1,6 @@
 package br.com.desafio.totalshake.model;
 
+import br.com.desafio.totalshake.dto.PedidoDto;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -68,5 +69,6 @@ public class Pedido {
     public void setItensPedidoList(List<ItemPedido> itensPedidoList) {
         this.itensPedidoList = itensPedidoList;
     }
+
 
 }

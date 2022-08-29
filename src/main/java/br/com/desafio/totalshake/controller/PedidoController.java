@@ -1,6 +1,7 @@
 package br.com.desafio.totalshake.controller;
 import br.com.desafio.totalshake.dto.PedidoDto;
 import br.com.desafio.totalshake.model.Pedido;
+import br.com.desafio.totalshake.repository.PedidoRepository;
 import br.com.desafio.totalshake.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/pedidos")
@@ -36,6 +38,5 @@ public class PedidoController {
                 .buildAndExpand(pedidoDto.getId()).toUri();
         return ResponseEntity.created(uri).body(pedido);
     }
-
 
 }
