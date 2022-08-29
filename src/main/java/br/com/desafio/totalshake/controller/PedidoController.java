@@ -1,5 +1,6 @@
 package br.com.desafio.totalshake.controller;
 import br.com.desafio.totalshake.dto.PedidoDto;
+import br.com.desafio.totalshake.model.Pedido;
 import br.com.desafio.totalshake.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pedidos")
@@ -15,9 +17,10 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    @GetMapping(value = "/findAll")
-    public ResponseEntity<String> findAll() {
-        return ResponseEntity.ok().body("Find All funcionou");
+    @GetMapping
+    public ResponseEntity<List<Pedido>> findAll() {
+        List<Pedido> pedidosList = pedidoService.findAll();
+        return ResponseEntity.ok().body(pedidosList);
     }
 
     @GetMapping(value = "/{id}")
@@ -27,11 +30,11 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDto> post(@RequestBody PedidoDto pedidoDto) {
-        pedidoDto = pedidoService.post(pedidoDto);
+    public ResponseEntity<Pedido> post(@RequestBody PedidoDto pedidoDto) {
+        Pedido pedido = pedidoService.post(pedidoDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(pedidoDto.getId()).toUri();
-        return ResponseEntity.created(uri).body(pedidoDto);
+        return ResponseEntity.created(uri).body(pedido);
     }
 
 

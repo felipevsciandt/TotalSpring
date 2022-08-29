@@ -3,6 +3,7 @@ package br.com.desafio.totalshake.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "item_pedido")
 public class ItemPedido {
 
     @ManyToOne

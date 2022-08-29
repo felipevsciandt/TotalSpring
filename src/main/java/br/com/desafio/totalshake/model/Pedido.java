@@ -1,6 +1,6 @@
 package br.com.desafio.totalshake.model;
 
-import br.com.desafio.totalshake.dto.PedidoDto;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "pedido")
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private LocalDate dataHora;
+    @NotNull
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private EmumStatus emumStatus;
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itensPedidoList = new ArrayList<>();
 
@@ -27,10 +30,10 @@ public class Pedido {
     @Deprecated
     public Pedido() {}
 
-    public Pedido(Long id, LocalDate dataHora, Status status, List<ItemPedido> itensPedidoList) {
+    public Pedido(Long id, LocalDate dataHora, EmumStatus emumStatus, List<ItemPedido> itensPedidoList) {
         this.id = id;
         this.dataHora = dataHora;
-        this.status = status;
+        this.emumStatus = emumStatus;
         this.itensPedidoList = itensPedidoList;
     }
 
@@ -50,12 +53,12 @@ public class Pedido {
         this.dataHora = dataHora;
     }
 
-    public Status getStatus() {
-        return status;
+    public EmumStatus getStatus() {
+        return emumStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(EmumStatus emumStatus) {
+        this.emumStatus = emumStatus;
     }
 
     public List<ItemPedido> getItensPedidoList() {
@@ -66,9 +69,4 @@ public class Pedido {
         this.itensPedidoList = itensPedidoList;
     }
 
-    public static Pedido converterParaClasse(PedidoDto pedidoDto) {
-        Pedido pedido = new Pedido();
-        pedido.setStatus(pedidoDto.getStatus());
-        return pedido;
-    }
 }
