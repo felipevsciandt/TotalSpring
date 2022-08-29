@@ -1,5 +1,7 @@
 package br.com.desafio.totalshake.model;
 
+import br.com.desafio.totalshake.dto.PedidoDto;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -62,5 +64,11 @@ public class Pedido {
 
     public void setItensPedidoList(List<ItemPedido> itensPedidoList) {
         this.itensPedidoList = itensPedidoList;
+    }
+
+    public static Pedido converterParaClasse(PedidoDto pedidoDto) {
+        Pedido pedido = new Pedido();
+        pedido.setStatus(pedidoDto.getStatus());
+        return pedido;
     }
 }
