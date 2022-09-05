@@ -1,6 +1,6 @@
 package br.com.desafio.totalshake.model;
 
-import br.com.desafio.totalshake.dto.PedidoDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -18,8 +18,9 @@ public class Pedido {
     private LocalDate dataHora;
     @NotNull
     @Enumerated(EnumType.STRING)
-    private EmumStatus emumStatus;
+    private EnumStatus enumStatus;
     @OneToMany(mappedBy = "pedido")
+    @JsonIgnoreProperties("pedido")
     private List<ItemPedido> itensPedidoList = new ArrayList<>();
 
     @PrePersist
@@ -31,11 +32,17 @@ public class Pedido {
     @Deprecated
     public Pedido() {}
 
-    public Pedido(Long id, LocalDate dataHora, EmumStatus emumStatus, List<ItemPedido> itensPedidoList) {
+    public Pedido(Long id, LocalDate dataHora, EnumStatus enumStatus, List<ItemPedido> itensPedidoList) {
         this.id = id;
         this.dataHora = dataHora;
-        this.emumStatus = emumStatus;
+        this.enumStatus = enumStatus;
         this.itensPedidoList = itensPedidoList;
+    }
+
+    public Pedido(Long id, LocalDate data, EnumStatus enumStatus) {
+        this.id = id;
+        this.dataHora = data;
+        this.enumStatus = enumStatus;
     }
 
     public Long getId() {
@@ -54,12 +61,12 @@ public class Pedido {
         this.dataHora = dataHora;
     }
 
-    public EmumStatus getStatus() {
-        return emumStatus;
+    public EnumStatus getStatus() {
+        return enumStatus;
     }
 
-    public void setStatus(EmumStatus emumStatus) {
-        this.emumStatus = emumStatus;
+    public void setStatus(EnumStatus enumStatus) {
+        this.enumStatus = enumStatus;
     }
 
     public List<ItemPedido> getItensPedidoList() {

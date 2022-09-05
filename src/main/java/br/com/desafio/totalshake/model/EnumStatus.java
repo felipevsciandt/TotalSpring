@@ -1,8 +1,6 @@
 package br.com.desafio.totalshake.model;
 
-import lombok.Getter;
-
-public enum EmumStatus {
+public enum EnumStatus {
     REALIZADO,
     CANCELADO,
     PAGO,

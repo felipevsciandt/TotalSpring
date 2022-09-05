@@ -22,7 +22,7 @@ Adicione as dependências que vamos precisar para o projeto. Vamos usar estas, e
 ### Classe Pedido
 - private Long id (Chave primária, autogerada);
 - private LocalDateTime dataHora;
-- private Status emumStatus;
+- private Status enumStatus;
 - private List< ItemPedido > itensPedidoList.
 
  ### Obs: Para os atributos, pratiquem a ideia de programação defensiva, realizando as validações através das annotations do Validation, desta forma:

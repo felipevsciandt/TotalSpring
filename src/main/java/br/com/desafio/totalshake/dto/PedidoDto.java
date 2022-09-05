@@ -1,7 +1,7 @@
 package br.com.desafio.totalshake.dto;
 
 
-import br.com.desafio.totalshake.model.EmumStatus;
+import br.com.desafio.totalshake.model.EnumStatus;
 import br.com.desafio.totalshake.model.Pedido;
 
 import java.time.LocalDate;
@@ -9,20 +9,22 @@ import java.time.LocalDate;
 public class PedidoDto {
     private Long id;
     private LocalDate data;
-    private EmumStatus emumStatus;
+    private EnumStatus enumStatus;
 
     public PedidoDto() {}
 
-    public PedidoDto(Long id, EmumStatus emumStatus) {
+    public PedidoDto(Long id, EnumStatus enumStatus) {
         this.id = id;
-        this.emumStatus = emumStatus;
+        this.enumStatus = enumStatus;
     }
 
     public PedidoDto(Pedido entity) {
         this.id = entity.getId();
         this.data = entity.getDataHora();
-        this.emumStatus = entity.getStatus();
+        this.enumStatus = entity.getStatus();
     }
+
+
 
     public Long getId() {
         return id;
@@ -32,8 +34,8 @@ public class PedidoDto {
         return data;
     }
 
-    public EmumStatus getStatus() {
-        return emumStatus;
+    public EnumStatus getStatus() {
+        return enumStatus;
     }
 
     public void setId(Long id) {
@@ -44,7 +46,11 @@ public class PedidoDto {
         this.data = data;
     }
 
-    public void setEmumStatus(EmumStatus emumStatus) {
-        this.emumStatus = emumStatus;
+    public void setEmumStatus(EnumStatus enumStatus) {
+        this.enumStatus = enumStatus;
+    }
+
+    public Pedido converterDtoParaPedido() {
+        return new Pedido(this.getId(), this.getData(), this.getStatus());
     }
 }
