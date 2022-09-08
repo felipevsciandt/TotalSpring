@@ -1,5 +1,6 @@
 package br.com.desafio.totalshake.service;
 
+import br.com.desafio.totalshake.dto.PagamentoDto;
 import br.com.desafio.totalshake.dto.PedidoDto;
 import br.com.desafio.totalshake.model.EnumStatus;
 import br.com.desafio.totalshake.model.Pedido;
@@ -56,5 +57,14 @@ public class PedidoService {
     public Pedido atualizarPedido(PedidoDto pedidoDto) {
         Pedido pedidoASerAtualizado = pedidoDto.converterDtoParaPedido();
         return repository.save(pedidoASerAtualizado);
+    }
+
+    public Pedido atualizaPagamentoPedido(PagamentoDto pagamentoDto) {
+        var pedido = repository.findById(pagamentoDto.getId());
+        if (pedido.isPresent()) {
+            pedido.get().setStatus(EnumStatus.PAGO);
+            return repository.save(pedido.get());
+        }
+        else throw new RuntimeException("Pedido não encontrado");
     }
 }

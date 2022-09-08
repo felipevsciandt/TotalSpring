@@ -1,4 +1,5 @@
 package br.com.desafio.totalshake.controller;
+import br.com.desafio.totalshake.dto.PagamentoDto;
 import br.com.desafio.totalshake.dto.PedidoDto;
 import br.com.desafio.totalshake.model.Pedido;
 import br.com.desafio.totalshake.service.PedidoService;
@@ -53,5 +54,11 @@ public class PedidoController {
     public void deletarPedido(@PathVariable Long id) {
         service.deletarPedido(id);
     }
+
+    @PostMapping(value = "/pagar")
+    public ResponseEntity<Pedido> atualizaPagamentoPedido(@RequestBody PagamentoDto pagamentoDto) {
+        Pedido pedido = service.atualizaPagamentoPedido(pagamentoDto);
+        return ResponseEntity.ok().body(pedido);
+    };
 
 }

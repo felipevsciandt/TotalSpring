@@ -61,7 +61,7 @@ public class Pedido {
         this.dataHora = dataHora;
     }
 
-    public EnumStatus getStatus() {
+    public EnumStatus getEnumStatus() {
         return enumStatus;
     }
 

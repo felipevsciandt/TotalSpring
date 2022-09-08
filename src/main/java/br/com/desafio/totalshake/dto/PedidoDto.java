@@ -21,7 +21,7 @@ public class PedidoDto {
     public PedidoDto(Pedido entity) {
         this.id = entity.getId();
         this.data = entity.getDataHora();
-        this.enumStatus = entity.getStatus();
+        this.enumStatus = entity.getEnumStatus();
     }
 
 
@@ -34,7 +34,7 @@ public class PedidoDto {
         return data;
     }
 
-    public EnumStatus getStatus() {
+    public EnumStatus getEnumStatus() {
         return enumStatus;
     }
 
@@ -51,6 +51,6 @@ public class PedidoDto {
     }
 
     public Pedido converterDtoParaPedido() {
-        return new Pedido(this.getId(), this.getData(), this.getStatus());
+        return new Pedido(this.getId(), this.getData(), this.getEnumStatus());
     }
 }
